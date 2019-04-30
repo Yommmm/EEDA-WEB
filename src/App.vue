@@ -1,96 +1,52 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
+  <div id="app" class="app-index">
+    <!-- <img src="./assets/logo.png"> -->
     <!-- <router-view/> -->
-    <h1>设备配置管理</h1>
-    <h1>数据可视化</h1>
-    <h1>其他管理</h1>
+    <a :class="showdevconfig ? 'app-a' : 'app-b'" @click="showconfig()">设备配置管理</a>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a :class="showvisualization ? 'app-a' : 'app-b'" @click="showvisual()">数据可视化</a>
 
-    <div>
-      <Table :columns="columns" :data="tableData"></Table>
-    </div>
+    <devconfig v-if="showdevconfig"></devconfig>
+    <visualization v-if="showvisualization"></visualization>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import devconfig from "./pages/devconfig/index.vue";
+import visualization from "./pages/visualization/index.vue";
 
 export default {
   name: "App",
 
-  components: {},
+  components: {
+    devconfig,
+    visualization
+  },
 
   data: function() {
     return {
-      columns: [
-        {
-          title: "采集时间",
-          width: 150,
-          key: "createTime"
-        },
-        {
-          title: "数据",
-          width: 150,
-          key: "eData"
-        },
-        {
-          title: "数据流水号",
-          width: 150,
-          key: "eDataId"
-        },
-        {
-          title: "湿度",
-          width: 150,
-          key: "eMac"
-        },
-        {
-          title: "IP地址",
-          width: 150,
-          key: "eIp"
-        },
-        {
-          title: "MAC地址",
-          width: 150,
-          key: "eHumidity"
-        },
-        {
-          title: "压力",
-          width: 150,
-          key: "ePressure"
-        },
-        {
-          title: "温度",
-          width: 150,
-          key: "eTemperature"
-        }
-      ],
-      tableData: []
+      showdevconfig: false,
+      showvisualization: true,
     };
   },
 
   computed: {},
   watch: {},
   methods: {
-    testAxios() {
+    showconfig() {
       var that = this;
-      var instance = axios.create({
-        baseURL: "http://39.108.83.208:9879",
-        timeout: 1000
-      });
-      instance
-        .get("/eeda/v1/equipmentData/list")
-        .then(function(res) {
-          that.tableData = res.data;
-          console.log(that.tableData);
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    }
+      that.showdevconfig = !that.showdevconfig;
+      that.showvisualization = false;
+    },
+    showvisual() {
+      var that = this;
+      that.showvisualization = !that.showvisualization;
+      that.showdevconfig = false;
+    },
   },
 
   mounted() {
-    this.testAxios();
   }
 };
 </script>
@@ -102,6 +58,16 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
+
+.app-index .app-a {
+  font-size: 30px;
+}
+
+.app-index .app-b {
+  font-size: 30px;
+  color: black;
+}
+
 </style>
