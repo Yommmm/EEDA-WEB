@@ -58,7 +58,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 20px;
+  margin: 20px 20px 0px 20px;
 }
 
 .app-index .app-a {
