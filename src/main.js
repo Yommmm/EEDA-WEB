@@ -6,8 +6,10 @@ import router from './router';
 import VueRouter from 'vue-router';
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
+import echarts from 'echarts';
 
 Vue.config.productionTip = false
+Vue.prototype.$echarts = echarts;
 
 Vue.use(VueRouter);
 Vue.use(iView);

@@ -36,12 +36,12 @@ export default {
   methods: {
     showconfig() {
       var that = this;
-      that.showdevconfig = !that.showdevconfig;
+      that.showdevconfig = true;
       that.showvisualization = false;
     },
     showvisual() {
       var that = this;
-      that.showvisualization = !that.showvisualization;
+      that.showvisualization = true;
       that.showdevconfig = false;
     },
   },
