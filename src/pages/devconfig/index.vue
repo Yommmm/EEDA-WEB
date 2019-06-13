@@ -1,5 +1,6 @@
 <template>
   <div id="devconfig" class="devconfig">
+    <div class="title">设备配置管理</div>
     <div class="operate">
       <Button type="primary" @click="modalAdd = true">新增设备信息</Button>
       <Button type="primary" @click="modalUpdateAll = true">修改全局命令</Button>
@@ -281,5 +282,9 @@ export default {
     border-color: #2d8cf0;
     float: right;
     margin-left: 20px;
+}
+
+.title {
+  font-size: 30px;
 }
 </style>

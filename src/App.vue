@@ -1,27 +1,27 @@
 <template>
   <div id="app" class="app-index">
     <!-- <img src="./assets/logo.png"> -->
-    <!-- <router-view/> -->
-    <a :class="showdevconfig ? 'app-a' : 'app-b'" @click="showconfig()">设备配置管理</a>
+    <router-view/>
+    <!-- <a :class="showdevconfig ? 'app-a' : 'app-b'" @click="showconfig()">设备配置管理</a>
     &nbsp;&nbsp;&nbsp;&nbsp;
     <a :class="showvisualization ? 'app-a' : 'app-b'" @click="showvisual()">数据可视化</a>
-
     <devconfig v-if="showdevconfig"></devconfig>
-    <visualization v-if="showvisualization"></visualization>
+    <visualization v-if="showvisualization"></visualization> -->
+
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import devconfig from "./pages/devconfig/index.vue";
-import visualization from "./pages/visualization/index.vue";
+// import axios from "axios";
+// import devconfig from "./pages/devconfig/index.vue";
+// import visualization from "./pages/visualization/index.vue";
 
 export default {
   name: "App",
 
   components: {
-    devconfig,
-    visualization
+    // devconfig,
+    // visualization
   },
 
   data: function() {
