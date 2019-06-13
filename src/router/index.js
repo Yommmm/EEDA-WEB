@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import devconfig from '../pages/devconfig/index.vue'
 import visualization from '../pages/visualization/index.vue'
+import visualizationNew from '../pages/visualization/indexNew.vue'
 import menu from '../pages/menu/index.vue'
 
 Vue.use(Router)
@@ -29,6 +30,11 @@ export default new Router({
       path: '/menu',
       name: 'menu',
       component: menu
+    },
+    {
+      path: '/visualizationNew',
+      name: 'visualizationNew',
+      component: visualizationNew
     }
   ]
 })
