@@ -75,7 +75,7 @@ export default {
       columns: [
         {
           title: "设备名称",
-          key: "eId"
+          key: "eName"
         },
         {
           title: "设备MAC地址",
