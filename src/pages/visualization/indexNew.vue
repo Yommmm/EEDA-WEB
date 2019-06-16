@@ -11,7 +11,7 @@
             <div class="chart-wrapper">
               <h3 class="chart-title">近期操作</h3>
               <div class="chart-div">
-                <div id="visual1" style="width: 460px; height: 360px;"></div>
+                <div id="visual1" style="width: 100%; height: 110%;"></div>
               </div>
             </div>
           </div>
@@ -19,16 +19,25 @@
             <div class="chart-wrapper">
               <h3 class="chart-title"></h3>
               <div class="chart-div">
-                <div id="visual2" style="width: 720px; height: 360px;"></div>
+                <div id="visual2" style="width: 140%; height: 130%; margin: -5% 0% 0% -20%;"></div>
               </div>
             </div>
           </div>
           <div class="flex-cell flex-cell-r">
             <div class="chart-wrapper">
-              <h3 class="chart-title">操作统计</h3>
+              <h3 class="chart-title">操作统计
+                <Select v-model="model10" size="small" style="width:100px;">
+                  <Option
+                    size="small"
+                    v-for="item in cityList"
+                    :value="item.value"
+                    :key="item.value"
+                  >{{ item.label }}</Option>
+                </Select>
+              </h3>
               <!-- <div class="chart-div chart-done"> -->
               <div class="chart-div">
-                <div id="visual3" style="width: 460px; height: 360px;"></div>
+                <div id="visual3" style="width: 110%; height: 110%;"></div>
               </div>
             </div>
           </div>
@@ -38,7 +47,7 @@
             <div class="chart-wrapper">
               <h3 class="chart-title">温度与压力</h3>
               <div class="chart-div chart-done">
-                <div id="visual5" style="width: 1300px; height: 370px;"></div>
+                <div id="visual5" style="width: 102%; height: 110%;"></div>
               </div>
             </div>
           </div>
@@ -46,7 +55,7 @@
             <div class="chart-wrapper">
               <h3 class="chart-title"></h3>
               <!-- <div class="chart-div chart-done"> -->
-              <div class="">
+              <div class>
                 <div class="chart-loader">
                   <div class="loader"></div>
                 </div>
@@ -66,8 +75,16 @@ import echarts from "echarts";
 export default {
   components: {},
 
-  data: function() {
-    return {};
+  data() {
+    return {
+      cityList: [
+        {
+          value: "New York",
+          label: "New York"
+        }
+      ],
+      model10: [],
+    };
   },
 
   computed: {},
@@ -78,6 +95,9 @@ export default {
       let myChart = echarts.init(document.getElementById("visual1"));
       // 绘制图表
       myChart.setOption({
+        tooltip: {
+          trigger: "axis"
+        },
         grid: {
           left: "0%",
           right: "4%",
@@ -87,11 +107,11 @@ export default {
         },
         dataset: {
           source: [
-            ["product", "2015", "2016", "2017"],
-            ["Matcha Latte", 43.3, 85.8, 93.7],
-            ["Milk Tea", 83.1, 73.4, 55.1],
-            ["Cheese Cocoa", 86.4, 65.2, 82.5],
-            ["Walnut Brownie", 72.4, 53.9, 39.1]
+            ["操作", "开机", "关机", "工作"],
+            ["6.14", 43.3, 85.8, 93.7],
+            ["6.15", 83.1, 73.4, 55.1],
+            ["6.16", 86.4, 65.2, 82.5],
+            ["6.17", 72.4, 53.9, 39.1]
           ]
         },
         xAxis: {
@@ -136,7 +156,7 @@ export default {
           data: ["开机", "关机", "加湿", "除尘", "待机"],
           textStyle: {
             color: "#FFFFFF"
-          },
+          }
         },
         series: [
           {
@@ -210,7 +230,7 @@ export default {
               var len = 10;
               while (len--) {
                 res.unshift(now.toLocaleTimeString().replace(/^\D*/, ""));
-                now = new Date(now - 2000);
+                now = new Date(now - 600000);
               }
               return res;
             })()
@@ -226,10 +246,12 @@ export default {
               }
             },
             data: (function() {
+              var now = new Date();
               var res = [];
               var len = 10;
               while (len--) {
-                res.push(len + 1);
+                res.unshift(now.toLocaleTimeString().replace(/^\D*/, ""));
+                now = new Date(now - 600000);
               }
               return res;
             })()
@@ -312,6 +334,13 @@ export default {
         tooltip: {
           formatter: "{a} <br/>{c} {b}"
         },
+        grid: {
+          left: "0%",
+          right: "0%",
+          top: "0%",
+          bottom: "0%",
+          containLabel: true
+        },
         series: [
           {
             name: "温度",
@@ -369,7 +398,7 @@ export default {
               textStyle: {
                 // 其余属性默认使用全局文本样式，详见TEXTSTYLE
                 fontWeight: "bolder",
-                fontSize: 20,
+                fontSize: 15,
                 fontStyle: "italic",
                 color: "#fff",
                 shadowColor: "#fff", //默认透明
@@ -614,8 +643,7 @@ export default {
           }
         ]
       });
-    },
-    
+    }
   },
 
   mounted() {
