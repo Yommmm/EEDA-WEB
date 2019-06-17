@@ -28,11 +28,10 @@
               <h3 class="chart-title">操作统计
                 <Select v-model="model10" size="small" style="width:100px;">
                   <Option
-                    size="small"
-                    v-for="item in cityList"
-                    :value="item.value"
-                    :key="item.value"
-                  >{{ item.label }}</Option>
+                    v-for="item in selectData"
+                    :value="item.eId"
+                    :key="item.eId"
+                  >{{ item.eName }}</Option>
                 </Select>
               </h3>
               <!-- <div class="chart-div chart-done"> -->
@@ -71,18 +70,14 @@
 <script>
 // 引入基本模板
 import echarts from "echarts";
+import axios from "axios";
 
 export default {
   components: {},
 
   data() {
     return {
-      cityList: [
-        {
-          value: "New York",
-          label: "New York"
-        }
-      ],
+      selectData: [],
       model10: [],
 
       result: {
@@ -647,10 +642,32 @@ export default {
           }
         ]
       });
-    }
+    },
+    queryEquipment() {
+      var that = this;
+      var params = {
+        pageSize: 10,
+        pageNum: 1
+      };
+
+      var instance = axios.create({
+        baseURL: "http://39.108.83.208:9879",
+        timeout: 1000
+      });
+      instance
+        .post('/eeda/v1/equipmentInfo/queryWithPage', params)
+        .then(function(res) {
+          that.selectData = res.data.content;
+          that.model10 = that.selectData[0].eId;
+        })
+        .catch(function(error) {
+          console.log(error);
+      });
+    },
   },
 
   mounted() {
+    this.queryEquipment();
     this.drawVisual1();
     this.drawVisual2();
     this.drawVisual3();
