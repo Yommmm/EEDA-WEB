@@ -1,5 +1,5 @@
 <template>
-  <div id="devconfig" class="devconfig">
+  <div id="devconfig">
     <div class="title">设备配置管理</div>
     <div class="operate">
       <Button type="primary" @click="modalAdd = true">新增设备信息</Button>
@@ -271,6 +271,16 @@ export default {
 </script>
 
 <style>
+#devconfig {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin: 20px 20px 0px 20px;
+  background: #FFFFFF;
+}
+
 .operate {
   width: 100%;
   height: 40px;

@@ -37,6 +37,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin: 22% 20px 0px 20px;
+  background: #FFFFFF;
 }
 
 .menu-a {

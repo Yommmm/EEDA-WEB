@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="visualization-new">
     <header id="header">
       <h3 class="header-title">数据分析平台</h3>
     </header>
@@ -84,6 +84,29 @@ export default {
         }
       ],
       model10: [],
+
+      result: {
+        visual1Data: [
+          ["操作", "开机", "关机", "工作"],
+          ["6.14", 43.3, 85.8, 93.7],
+          ["6.15", 83.1, 73.4, 55.1],
+          ["6.16", 86.4, 65.2, 82.5],
+          ["6.17", 72.4, 53.9, 39.1]
+        ],
+        visual2Data: {},
+        visual3Data: {
+          catalog: ["开机", "关机", "加湿", "除尘", "待机"],
+          data: [
+            { value: 335, name: "开机" },
+            { value: 310, name: "关机" },
+            { value: 234, name: "加湿" },
+            { value: 135, name: "除尘" },
+            { value: 1548, name: "待机" }
+          ],
+        },
+        visual4Data: {},
+        visual5Data: {},
+      },
     };
   },
 
@@ -106,13 +129,7 @@ export default {
           containLabel: true
         },
         dataset: {
-          source: [
-            ["操作", "开机", "关机", "工作"],
-            ["6.14", 43.3, 85.8, 93.7],
-            ["6.15", 83.1, 73.4, 55.1],
-            ["6.16", 86.4, 65.2, 82.5],
-            ["6.17", 72.4, 53.9, 39.1]
-          ]
+          source: this.result.visual1Data
         },
         xAxis: {
           type: "category",
@@ -153,7 +170,7 @@ export default {
         legend: {
           orient: "vertical",
           x: "left",
-          data: ["开机", "关机", "加湿", "除尘", "待机"],
+          data: this.result.visual3Data.catalog,
           textStyle: {
             color: "#FFFFFF"
           }
@@ -182,13 +199,7 @@ export default {
                 show: false
               }
             },
-            data: [
-              { value: 335, name: "开机" },
-              { value: 310, name: "关机" },
-              { value: 234, name: "加湿" },
-              { value: 135, name: "除尘" },
-              { value: 1548, name: "待机" }
-            ]
+            data: this.result.visual3Data.data,
           }
         ]
       });
@@ -406,16 +417,9 @@ export default {
               }
             },
             detail: {
-              backgroundColor: "rgba(30,144,255,0.8)",
-              borderWidth: 1,
-              borderColor: "#fff",
-              shadowColor: "#fff", //默认透明
-              shadowBlur: 5,
-              offsetCenter: [0, "50%"], // x, y，单位px
-              textStyle: {
-                // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+              offsetCenter: [0, '60%'],       // x, y，单位px
+              textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
                 fontWeight: "bolder",
-                color: "#fff"
               }
             },
             data: [{ value: 40, name: "°C" }]
@@ -496,7 +500,7 @@ export default {
               textStyle: {
                 // 其余属性默认使用全局文本样式，详见TEXTSTYLE
                 fontWeight: "bolder",
-                color: "#fff"
+                fontSize: 20,
               }
             },
             data: [{ value: 1.5, name: "Pa" }]
